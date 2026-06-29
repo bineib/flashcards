@@ -31,29 +31,27 @@
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);min-height:100dvh;display:flex;flex-direction:column}
 .header{background:var(--surface);border-bottom:0.5px solid var(--border);padding:12px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10}
 .header h1{font-size:17px;font-weight:600;letter-spacing:-.3px}
+.sync-status{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:5px}
+.sync-dot{width:7px;height:7px;border-radius:50%;background:var(--muted);flex-shrink:0}
+.sync-dot.ok{background:#1D9E75}.sync-dot.err{background:#E24B4A}.sync-dot.loading{background:#EF9F27;animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 .main{flex:1;padding:16px;max-width:520px;margin:0 auto;width:100%}
 .nav{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:20px;background:var(--surface);padding:5px;border-radius:12px;border:0.5px solid var(--border)}
 .tab{background:none;border:none;padding:8px 4px;font-size:12px;cursor:pointer;color:var(--text2);border-radius:8px;font-weight:500;display:flex;flex-direction:column;align-items:center;gap:3px;font-family:inherit}
 .tab svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .tab.active{background:var(--bg);color:var(--text)}
 .screen{display:none}.screen.active{display:block}
-
 .stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
 .stat{background:var(--surface);border-radius:var(--r);padding:14px 10px;text-align:center;border:0.5px solid var(--border)}
 .stat-n{font-size:26px;font-weight:600}.stat-l{font-size:11px;color:var(--muted);margin-top:2px}
-
 .progress-bar{height:4px;background:var(--border);border-radius:2px;margin-bottom:20px;overflow:hidden}
 .progress-fill{height:100%;background:var(--accent);border-radius:2px;transition:width .4s}
-
-/* modes grid */
 .modes-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
 .mode-card{background:var(--surface);border:0.5px solid var(--border);border-radius:14px;padding:18px 14px;cursor:pointer;text-align:left;font-family:inherit;transition:border-color .15s}
 .mode-card:active{border-color:var(--accent)}
 .mode-icon{font-size:28px;margin-bottom:8px}
 .mode-title{font-size:15px;font-weight:600;margin-bottom:3px}
 .mode-desc{font-size:12px;color:var(--text2);line-height:1.4}
-
-/* card flip */
 .card-scene{perspective:1000px;width:100%;height:200px;margin-bottom:16px;cursor:pointer}
 .card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .45s cubic-bezier(.4,0,.2,1)}
 .card-inner.flipped{transform:rotateY(180deg)}
@@ -64,7 +62,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .card-translation{font-size:24px;font-weight:600;color:var(--accent)}
 .card-sub{font-size:18px;font-weight:500;color:var(--text2)}
 .card-context{font-size:13px;color:var(--text2);font-style:italic;text-align:center;line-height:1.5}
-
 .show-btn{width:100%;padding:14px;background:var(--surface);border:0.5px solid var(--border-strong);border-radius:var(--r);font-size:15px;font-weight:500;cursor:pointer;color:var(--text);margin-bottom:12px;font-family:inherit}
 .grade-label{font-size:12px;color:var(--muted);text-align:center;margin-bottom:10px}
 .grade-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
@@ -75,22 +72,16 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .g2{background:var(--warning-bg);color:var(--warning-text);border-color:var(--warning-text)}
 .g3{background:var(--accent-bg);color:var(--accent-text);border-color:var(--accent-text)}
 .g4{background:var(--success-bg);color:var(--success-text);border-color:var(--success-text)}
-
-/* quiz */
 .quiz-word{font-size:32px;font-weight:700;text-align:center;margin:20px 0 24px;letter-spacing:-.5px}
 .quiz-options{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
 .quiz-opt{padding:16px 10px;background:var(--surface);border:0.5px solid var(--border);border-radius:12px;font-size:14px;font-weight:500;cursor:pointer;font-family:inherit;text-align:center;transition:all .15s;color:var(--text)}
 .quiz-opt.correct{background:var(--success-bg);border-color:var(--success-text);color:var(--success-text)}
 .quiz-opt.wrong{background:var(--danger-bg);border-color:var(--danger-text);color:var(--danger-text)}
-
-/* input mode */
 .input-answer{width:100%;padding:14px 16px;font-size:18px;border:0.5px solid var(--border-strong);border-radius:12px;background:var(--surface);color:var(--text);font-family:inherit;outline:none;text-align:center;margin-bottom:12px}
 .input-answer:focus{border-color:var(--accent)}
 .answer-result{text-align:center;padding:16px;border-radius:12px;margin-bottom:12px;font-size:15px;font-weight:500}
 .answer-ok{background:var(--success-bg);color:var(--success-text)}
 .answer-wrong{background:var(--danger-bg);color:var(--danger-text)}
-
-/* sprint */
 .sprint-timer{font-size:48px;font-weight:700;text-align:center;margin-bottom:8px}
 .sprint-timer.warning{color:var(--danger-text)}
 .sprint-score{font-size:16px;text-align:center;color:var(--text2);margin-bottom:20px}
@@ -102,26 +93,16 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .sprint-btn:active{transform:scale(.96)}
 .sprint-no{background:var(--danger-bg);color:var(--danger-text)}
 .sprint-yes{background:var(--success-bg);color:var(--success-text)}
-
-/* audio */
-.audio-word{font-size:22px;font-weight:600;text-align:center;margin:16px 0 8px}
-.audio-hint{font-size:13px;color:var(--muted);text-align:center;margin-bottom:20px}
 .speak-btn{display:block;margin:0 auto 20px;width:80px;height:80px;border-radius:50%;background:var(--accent-bg);border:2px solid var(--accent);cursor:pointer;font-size:32px;transition:transform .15s}
 .speak-btn:active{transform:scale(.93)}
-
-/* done box */
 .done-box{text-align:center;padding:40px 20px;background:var(--surface);border-radius:16px;border:0.5px solid var(--border)}
 .done-icon{font-size:48px;margin-bottom:12px}
 .done-box h2{font-size:20px;font-weight:600;margin-bottom:8px}
 .done-box p{color:var(--text2);font-size:14px;line-height:1.6;margin-bottom:20px}
-
-/* buttons */
 .btn-primary{background:var(--accent);color:#fff;border:none;padding:12px 24px;border-radius:var(--r);font-size:15px;font-weight:500;cursor:pointer;font-family:inherit}
 .btn-primary:active{opacity:.85}
 .btn-secondary{background:var(--surface);color:var(--text);border:0.5px solid var(--border-strong);padding:12px 24px;border-radius:var(--r);font-size:15px;font-weight:500;cursor:pointer;font-family:inherit}
 .btn-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
-
-/* add screen */
 .section-title{font-size:13px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;margin-top:20px}
 .section-title:first-child{margin-top:0}
 .form-card{background:var(--surface);border:0.5px solid var(--border);border-radius:12px;padding:14px;margin-bottom:12px}
@@ -148,17 +129,13 @@ input[type=text]::placeholder{color:var(--muted)}
 .empty{text-align:center;padding:32px 16px;color:var(--muted);font-size:14px;line-height:1.6}
 .export-row{display:flex;gap:8px;margin-top:12px}
 .export-row button{flex:1}
-
-/* stats */
 .bar-row{margin-bottom:14px}
 .bar-label{display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px}
 .bar-label span:last-child{font-weight:500}
 .bar-track{height:6px;background:var(--border);border-radius:3px;overflow:hidden}
 .bar-fill{height:100%;background:var(--accent);border-radius:3px;transition:width .4s}
-
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--text);color:var(--bg);padding:10px 20px;border-radius:20px;font-size:14px;font-weight:500;transition:transform .3s;z-index:100;white-space:nowrap}
 .toast.show{transform:translateX(-50%) translateY(0)}
-
 .back-btn{background:none;border:none;cursor:pointer;color:var(--text2);font-size:14px;font-family:inherit;padding:0;margin-bottom:16px;display:flex;align-items:center;gap:4px}
 .mode-progress{display:flex;align-items:center;gap:10px;margin-bottom:16px}
 .mode-progress-bar{flex:1;height:4px;background:var(--border);border-radius:2px;overflow:hidden}
@@ -169,7 +146,10 @@ input[type=text]::placeholder{color:var(--muted)}
 <body>
 <header class="header">
   <h1 id="header-title">Flashcards</h1>
-  <span id="header-info" style="font-size:13px;color:var(--muted)"></span>
+  <div class="sync-status">
+    <div class="sync-dot loading" id="sync-dot"></div>
+    <span id="sync-label">синхронизация...</span>
+  </div>
 </header>
 <main class="main">
   <nav class="nav" id="main-nav">
@@ -191,14 +171,71 @@ input[type=text]::placeholder{color:var(--muted)}
 <div class="toast" id="toast"></div>
 
 <script>
+const SUPA_URL = 'https://knxcvzwgmcammdblmvlu.supabase.co';
+const SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtueGN2endnbWNhbW1kYmxtdmx1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI3NTAwNzksImV4cCI6MjA5ODMyNjA3OX0.Eo-LICDtUAFzeJWqofMgPU6VDzC7-zyWHyb8SuHz1RE';
+const HEADS = {'Content-Type':'application/json','apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY};
+
 const SK='fc_words_v1', STK='fc_stats_v1';
-function load(){try{return JSON.parse(localStorage.getItem(SK)||'[]')}catch(e){return[]}}
-function save(d){localStorage.setItem(SK,JSON.stringify(d))}
-function loadSt(){try{return JSON.parse(localStorage.getItem(STK)||'{"reviews":0,"days":[]}')}catch(e){return{reviews:0,days:[]}}}
-function saveSt(s){localStorage.setItem(STK,JSON.stringify(s))}
+function loadLocal(){try{return JSON.parse(localStorage.getItem(SK)||'[]')}catch(e){return[]}}
+function saveLocal(d){localStorage.setItem(SK,JSON.stringify(d))}
+function loadStats(){try{return JSON.parse(localStorage.getItem(STK)||'{"reviews":0,"days":[]}')}catch(e){return{reviews:0,days:[]}}}
+function saveStats(s){localStorage.setItem(STK,JSON.stringify(s))}
 function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,7)}
 function getDue(words){return words.filter(w=>!w.due||w.due<=Date.now())}
 
+// ── SUPABASE SYNC ──
+let syncOk=false;
+
+function setSyncStatus(state,label){
+  const dot=document.getElementById('sync-dot');
+  const lbl=document.getElementById('sync-label');
+  if(dot){dot.className='sync-dot '+state}
+  if(lbl)lbl.textContent=label;
+  syncOk=state==='ok';
+}
+
+async function dbFetch(path,opts={}){
+  const r=await fetch(SUPA_URL+'/rest/v1/'+path,{headers:HEADS,...opts});
+  if(!r.ok)throw new Error(await r.text());
+  return r.status===204?null:r.json();
+}
+
+async function syncFromCloud(){
+  setSyncStatus('loading','синхронизация...');
+  try{
+    const rows=await dbFetch('words?select=*&order=created_at.asc');
+    saveLocal(rows.map(r=>({id:r.id,en:r.en,ru:r.ru,ctx:r.ctx||'',interval:r.interval,reps:r.reps,ef:r.ef,due:r.due})));
+    setSyncStatus('ok','синхронизировано');
+    return true;
+  }catch(e){
+    setSyncStatus('err','нет связи');
+    return false;
+  }
+}
+
+async function upsertWord(w){
+  try{
+    await dbFetch('words?on_conflict=id',{method:'POST',body:JSON.stringify({id:w.id,en:w.en,ru:w.ru,ctx:w.ctx||'',interval:w.interval,reps:w.reps,ef:w.ef,due:w.due}),headers:{...HEADS,'Prefer':'resolution=merge-duplicates'}});
+    setSyncStatus('ok','синхронизировано');
+  }catch(e){setSyncStatus('err','ошибка сохранения')}
+}
+
+async function deleteWord(id){
+  try{
+    await dbFetch('words?id=eq.'+id,{method:'DELETE'});
+    setSyncStatus('ok','синхронизировано');
+  }catch(e){setSyncStatus('err','ошибка удаления')}
+}
+
+async function upsertMany(words){
+  if(!words.length)return;
+  try{
+    await dbFetch('words?on_conflict=id',{method:'POST',body:JSON.stringify(words.map(w=>({id:w.id,en:w.en,ru:w.ru,ctx:w.ctx||'',interval:w.interval,reps:w.reps,ef:w.ef,due:w.due}))),headers:{...HEADS,'Prefer':'resolution=merge-duplicates'}});
+    setSyncStatus('ok','синхронизировано');
+  }catch(e){setSyncStatus('err','ошибка сохранения')}
+}
+
+// ── SM2 ──
 function sm2(card,grade){
   let{interval=1,reps=0,ef=2.5}=card;
   ef=Math.max(1.3,ef+0.1-(5-grade)*(0.08+(5-grade)*0.02));
@@ -208,23 +245,21 @@ function sm2(card,grade){
 }
 
 function recordReview(){
-  const st=loadSt();
+  const st=loadStats();
   st.reviews=(st.reviews||0)+1;
   const today=new Date().toDateString();
   if(!st.days)st.days=[];
   if(st.days[st.days.length-1]!==today)st.days=[...st.days,today].slice(-365);
-  saveSt(st);
+  saveStats(st);
 }
 
 // ── TAB ROUTING ──
-let currentTab='study';
 function showTab(name){
   ['study','add','stats'].forEach(t=>{
     document.getElementById('tab-'+t)?.classList.toggle('active',t===name);
     document.getElementById('screen-'+t)?.classList.toggle('active',t===name);
   });
   document.getElementById('screen-mode').classList.remove('active');
-  currentTab=name;
   document.getElementById('header-title').textContent='Flashcards';
   document.getElementById('main-nav').style.display='';
   if(name==='study')renderStudy();
@@ -233,9 +268,7 @@ function showTab(name){
 }
 
 function openMode(mode){
-  ['study','add','stats'].forEach(t=>{
-    document.getElementById('screen-'+t).classList.remove('active');
-  });
+  ['study','add','stats'].forEach(t=>document.getElementById('screen-'+t).classList.remove('active'));
   document.getElementById('screen-mode').classList.add('active');
   document.getElementById('main-nav').style.display='none';
   if(mode==='cards')startCards();
@@ -253,52 +286,29 @@ function closeMode(){
 
 // ── STUDY HOME ──
 let flipQueue=[],flipCurrent=null,flipRevealed=false;
-
-function buildFlipQueue(){flipQueue=getDue(load()).sort(()=>Math.random()-.5)}
+function buildFlipQueue(){flipQueue=getDue(loadLocal()).sort(()=>Math.random()-.5)}
 
 function renderStudy(){
-  const words=load(),due=getDue(words);
-  document.getElementById('header-info').textContent=due.length?due.length+' к повторению':'';
+  const words=loadLocal(),due=getDue(words);
   const pct=words.length?Math.round((1-due.length/words.length)*100):0;
   const el=document.getElementById('screen-study');
   if(!words.length){
     el.innerHTML=`<div class="done-box"><div class="done-icon">📚</div><h2>Добавь первые слова</h2><p>Перейди во вкладку «Слова» и добавь слова.</p><button class="btn-primary" onclick="showTab('add')">Добавить слова</button></div>`;
     return;
   }
-  const dueCount=due.length;
   el.innerHTML=`
     <div class="stats-row">
-      <div class="stat"><div class="stat-n">${dueCount}</div><div class="stat-l">к повторению</div></div>
+      <div class="stat"><div class="stat-n">${due.length}</div><div class="stat-l">к повторению</div></div>
       <div class="stat"><div class="stat-n">${words.filter(w=>w.reps>0).length}</div><div class="stat-l">изучено</div></div>
       <div class="stat"><div class="stat-n">${words.length}</div><div class="stat-l">всего</div></div>
     </div>
     <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
     <div class="modes-grid">
-      <div class="mode-card" onclick="openMode('cards')">
-        <div class="mode-icon">🃏</div>
-        <div class="mode-title">Карточки</div>
-        <div class="mode-desc">Классический Anki: переверни и оцени</div>
-      </div>
-      <div class="mode-card" onclick="openMode('quiz')">
-        <div class="mode-icon">🎯</div>
-        <div class="mode-title">Тест</div>
-        <div class="mode-desc">Выбери правильный перевод из 4 вариантов</div>
-      </div>
-      <div class="mode-card" onclick="openMode('input')">
-        <div class="mode-icon">✏️</div>
-        <div class="mode-title">Ввод</div>
-        <div class="mode-desc">Напиши перевод самостоятельно</div>
-      </div>
-      <div class="mode-card" onclick="openMode('sprint')">
-        <div class="mode-icon">⚡</div>
-        <div class="mode-title">Спринт</div>
-        <div class="mode-desc">Максимум слов за 30 секунд</div>
-      </div>
-      <div class="mode-card" onclick="openMode('audio')" style="grid-column:span 2">
-        <div class="mode-icon">🔊</div>
-        <div class="mode-title">Аудио</div>
-        <div class="mode-desc">Слушай слово и вспоминай перевод</div>
-      </div>
+      <div class="mode-card" onclick="openMode('cards')"><div class="mode-icon">🃏</div><div class="mode-title">Карточки</div><div class="mode-desc">Классический Anki: переверни и оцени</div></div>
+      <div class="mode-card" onclick="openMode('quiz')"><div class="mode-icon">🎯</div><div class="mode-title">Тест</div><div class="mode-desc">Выбери правильный перевод из 4 вариантов</div></div>
+      <div class="mode-card" onclick="openMode('input')"><div class="mode-icon">✏️</div><div class="mode-title">Ввод</div><div class="mode-desc">Напиши перевод самостоятельно</div></div>
+      <div class="mode-card" onclick="openMode('sprint')"><div class="mode-icon">⚡</div><div class="mode-title">Спринт</div><div class="mode-desc">Максимум слов за 30 секунд</div></div>
+      <div class="mode-card" onclick="openMode('audio')" style="grid-column:span 2"><div class="mode-icon">🔊</div><div class="mode-title">Аудио</div><div class="mode-desc">Слушай слово и вспоминай перевод</div></div>
     </div>`;
 }
 
@@ -311,9 +321,7 @@ function startCards(){
 }
 
 function renderCards(){
-  const words=load(),due=getDue(words);
-  const total=flipQueue.length+1;
-  const done=Math.max(0,getDue(load()).length);
+  const words=loadLocal(),due=getDue(words);
   const el=document.getElementById('screen-mode');
   if(!flipCurrent){
     el.innerHTML=`<button class="back-btn" onclick="closeMode()">← Назад</button><div class="done-box"><div class="done-icon">🎉</div><h2>Режим пройден!</h2><p>Все карточки повторены.</p><div class="btn-row"><button class="btn-primary" onclick="startCards()">Ещё раз</button><button class="btn-secondary" onclick="closeMode()">Меню</button></div></div>`;
@@ -329,26 +337,16 @@ function renderCards(){
     </div>
     <div class="card-scene" onclick="flipReveal()">
       <div class="card-inner${flipRevealed?' flipped':''}" id="ci">
-        <div class="card-face">
-          <div class="card-hint">нажми чтобы перевернуть</div>
-          <div class="card-word">${flipCurrent.en}</div>
-          <div class="card-hint">${intv}</div>
-        </div>
-        <div class="card-face card-back">
-          <div class="card-translation">${flipCurrent.ru}</div>
-          <div class="card-sub">${flipCurrent.en}</div>
-          ${ctx}
-        </div>
+        <div class="card-face"><div class="card-hint">нажми чтобы перевернуть</div><div class="card-word">${flipCurrent.en}</div><div class="card-hint">${intv}</div></div>
+        <div class="card-face card-back"><div class="card-translation">${flipCurrent.ru}</div><div class="card-sub">${flipCurrent.en}</div>${ctx}</div>
       </div>
     </div>
-    ${flipRevealed?`
-      <div class="grade-label">Насколько легко вспомнили?</div>
-      <div class="grade-row">
-        <button class="grade-btn g1" onclick="flipGrade(1)">1<span>Не помню</span></button>
-        <button class="grade-btn g2" onclick="flipGrade(2)">2<span>Сложно</span></button>
-        <button class="grade-btn g3" onclick="flipGrade(3)">3<span>Хорошо</span></button>
-        <button class="grade-btn g4" onclick="flipGrade(4)">4<span>Легко</span></button>
-      </div>`:`<button class="show-btn" onclick="flipReveal()">Показать перевод</button>`}`;
+    ${flipRevealed?`<div class="grade-label">Насколько легко вспомнили?</div><div class="grade-row">
+      <button class="grade-btn g1" onclick="flipGrade(1)">1<span>Не помню</span></button>
+      <button class="grade-btn g2" onclick="flipGrade(2)">2<span>Сложно</span></button>
+      <button class="grade-btn g3" onclick="flipGrade(3)">3<span>Хорошо</span></button>
+      <button class="grade-btn g4" onclick="flipGrade(4)">4<span>Легко</span></button></div>`
+    :`<button class="show-btn" onclick="flipReveal()">Показать перевод</button>`}`;
 }
 
 function flipReveal(){if(flipRevealed)return;flipRevealed=true;renderCards()}
@@ -357,12 +355,12 @@ function nextFlip(render=true){
   flipCurrent=flipQueue.shift()||null;flipRevealed=false;
   if(render)renderCards();
 }
-function flipGrade(g){
-  const words=load(),idx=words.findIndex(w=>w.id===flipCurrent.id);
-  if(idx!==-1)words[idx]=sm2(words[idx],g);
-  save(words);recordReview();
+async function flipGrade(g){
+  const words=loadLocal(),idx=words.findIndex(w=>w.id===flipCurrent.id);
+  if(idx!==-1){words[idx]=sm2(words[idx],g);saveLocal(words);upsertWord(words[idx]);}
+  recordReview();
   if(g<2)flipQueue.push({...flipCurrent});
-  const due=getDue(load());
+  const due=getDue(loadLocal());
   if(!flipQueue.length&&due.length)buildFlipQueue();
   if(!due.length){flipQueue=[];flipCurrent=null}
   else nextFlip(false);
@@ -371,102 +369,67 @@ function flipGrade(g){
 
 // ── QUIZ MODE ──
 let quizWords=[],quizIdx=0,quizScore=0,quizAnswered=false;
-
 function startQuiz(){
   document.getElementById('header-title').textContent='Тест';
-  const all=load();
+  const all=loadLocal();
   if(all.length<4){showNoWords('Нужно минимум 4 слова для теста');return}
-  quizWords=getDue(all).length>=4?getDue(all):all;
-  quizWords=quizWords.sort(()=>Math.random()-.5).slice(0,20);
-  quizIdx=0;quizScore=0;
-  renderQuiz();
+  quizWords=(getDue(all).length>=4?getDue(all):all).sort(()=>Math.random()-.5).slice(0,20);
+  quizIdx=0;quizScore=0;renderQuiz();
 }
-
 function renderQuiz(){
   const el=document.getElementById('screen-mode');
   if(quizIdx>=quizWords.length){
-    el.innerHTML=`<button class="back-btn" onclick="closeMode()">← Назад</button>
-      <div class="done-box"><div class="done-icon">${quizScore===quizWords.length?'🏆':quizScore>quizWords.length/2?'👍':'📖'}</div>
-      <h2>Результат: ${quizScore}/${quizWords.length}</h2>
-      <p>${quizScore===quizWords.length?'Идеально!':quizScore>quizWords.length/2?'Хороший результат, продолжай!':'Ещё немного практики — и будет лучше!'}</p>
-      <div class="btn-row"><button class="btn-primary" onclick="startQuiz()">Ещё раз</button><button class="btn-secondary" onclick="closeMode()">Меню</button></div></div>`;
+    el.innerHTML=`<button class="back-btn" onclick="closeMode()">← Назад</button><div class="done-box"><div class="done-icon">${quizScore===quizWords.length?'🏆':quizScore>quizWords.length/2?'👍':'📖'}</div><h2>Результат: ${quizScore}/${quizWords.length}</h2><p>${quizScore===quizWords.length?'Идеально!':quizScore>quizWords.length/2?'Хороший результат!':'Ещё немного практики!'}</p><div class="btn-row"><button class="btn-primary" onclick="startQuiz()">Ещё раз</button><button class="btn-secondary" onclick="closeMode()">Меню</button></div></div>`;
     return;
   }
-  const all=load();
-  const w=quizWords[quizIdx];
-  const wrong=all.filter(x=>x.id!==w.id).sort(()=>Math.random()-.5).slice(0,3);
-  const opts=[w,...wrong].sort(()=>Math.random()-.5);
+  const all=loadLocal(),w=quizWords[quizIdx];
+  const opts=[w,...all.filter(x=>x.id!==w.id).sort(()=>Math.random()-.5).slice(0,3)].sort(()=>Math.random()-.5);
   el.innerHTML=`
     <button class="back-btn" onclick="closeMode()">← Назад</button>
-    <div class="mode-progress">
-      <div class="mode-progress-bar"><div class="mode-progress-fill" style="width:${Math.round(quizIdx/quizWords.length*100)}%"></div></div>
-      <span class="mode-progress-text">${quizIdx+1}/${quizWords.length}</span>
-    </div>
+    <div class="mode-progress"><div class="mode-progress-bar"><div class="mode-progress-fill" style="width:${Math.round(quizIdx/quizWords.length*100)}%"></div></div><span class="mode-progress-text">${quizIdx+1}/${quizWords.length}</span></div>
     <div class="quiz-word">${w.en}</div>
-    <div class="quiz-options">
-      ${opts.map(o=>`<button class="quiz-opt" onclick="quizAnswer('${o.id}','${w.id}',this)">${o.ru}</button>`).join('')}
-    </div>`;
+    <div class="quiz-options">${opts.map(o=>`<button class="quiz-opt" onclick="quizAnswer('${o.id}','${w.id}',this)">${o.ru}</button>`).join('')}</div>`;
 }
-
 function quizAnswer(chosen,correct,btn){
-  if(quizAnswered)return;
-  quizAnswered=true;
-  const opts=document.querySelectorAll('.quiz-opt');
-  opts.forEach(b=>{
-    const id=b.getAttribute('onclick').match(/'([^']+)'/)?.[1];
-    if(id===correct)b.classList.add('correct');
-  });
-  if(chosen===correct){quizScore++;btn.classList.add('correct')}
-  else{btn.classList.add('wrong')}
+  if(quizAnswered)return;quizAnswered=true;
+  document.querySelectorAll('.quiz-opt').forEach(b=>{if(b.getAttribute('onclick').includes("'"+correct+"'"))b.classList.add('correct')});
+  if(chosen===correct){quizScore++;btn.classList.add('correct')}else btn.classList.add('wrong');
   recordReview();
   setTimeout(()=>{quizAnswered=false;quizIdx++;renderQuiz()},900);
 }
 
 // ── INPUT MODE ──
 let inputWords=[],inputIdx=0,inputScore=0,inputChecked=false;
-
 function startInput(){
   document.getElementById('header-title').textContent='Ввод ответа';
-  const all=load();
+  const all=loadLocal();
   if(!all.length){showNoWords();return}
-  inputWords=getDue(all).length?getDue(all):all;
-  inputWords=inputWords.sort(()=>Math.random()-.5).slice(0,20);
-  inputIdx=0;inputScore=0;inputChecked=false;
-  renderInput();
+  inputWords=(getDue(all).length?getDue(all):all).sort(()=>Math.random()-.5).slice(0,20);
+  inputIdx=0;inputScore=0;inputChecked=false;renderInput();
 }
-
 function renderInput(){
   const el=document.getElementById('screen-mode');
   if(inputIdx>=inputWords.length){
-    el.innerHTML=`<button class="back-btn" onclick="closeMode()">← Назад</button>
-      <div class="done-box"><div class="done-icon">${inputScore===inputWords.length?'🏆':inputScore>inputWords.length/2?'👍':'📖'}</div>
-      <h2>Результат: ${inputScore}/${inputWords.length}</h2>
-      <p>${inputScore===inputWords.length?'Отлично, все слова знаешь!':'Продолжай практиковаться!'}</p>
-      <div class="btn-row"><button class="btn-primary" onclick="startInput()">Ещё раз</button><button class="btn-secondary" onclick="closeMode()">Меню</button></div></div>`;
+    el.innerHTML=`<button class="back-btn" onclick="closeMode()">← Назад</button><div class="done-box"><div class="done-icon">${inputScore===inputWords.length?'🏆':inputScore>inputWords.length/2?'👍':'📖'}</div><h2>Результат: ${inputScore}/${inputWords.length}</h2><p>${inputScore===inputWords.length?'Отлично!':'Продолжай практиковаться!'}</p><div class="btn-row"><button class="btn-primary" onclick="startInput()">Ещё раз</button><button class="btn-secondary" onclick="closeMode()">Меню</button></div></div>`;
     return;
   }
   const w=inputWords[inputIdx];
   el.innerHTML=`
     <button class="back-btn" onclick="closeMode()">← Назад</button>
-    <div class="mode-progress">
-      <div class="mode-progress-bar"><div class="mode-progress-fill" style="width:${Math.round(inputIdx/inputWords.length*100)}%"></div></div>
-      <span class="mode-progress-text">${inputIdx+1}/${inputWords.length}</span>
-    </div>
+    <div class="mode-progress"><div class="mode-progress-bar"><div class="mode-progress-fill" style="width:${Math.round(inputIdx/inputWords.length*100)}%"></div></div><span class="mode-progress-text">${inputIdx+1}/${inputWords.length}</span></div>
     <div class="quiz-word">${w.en}</div>
     <input type="text" class="input-answer" id="inp-ans" placeholder="Введи перевод..." autocomplete="off" autocorrect="off" spellcheck="false" onkeydown="if(event.key==='Enter')checkInput()" />
     <div id="inp-result"></div>
     <button class="btn-primary" style="width:100%" onclick="checkInput()" id="inp-btn">Проверить</button>`;
   setTimeout(()=>document.getElementById('inp-ans')?.focus(),100);
 }
-
 function checkInput(){
   if(inputChecked)return;
   const w=inputWords[inputIdx];
   const ans=(document.getElementById('inp-ans').value||'').trim().toLowerCase();
   const correct=w.ru.toLowerCase();
   const ok=ans===correct||correct.includes(ans)&&ans.length>2;
-  inputChecked=true;
-  if(ok)inputScore++;
+  inputChecked=true;if(ok)inputScore++;
   document.getElementById('inp-result').innerHTML=`<div class="answer-result ${ok?'answer-ok':'answer-wrong'}">${ok?'✓ Правильно!':'✗ '+w.ru}</div>`;
   document.getElementById('inp-btn').textContent='Дальше →';
   document.getElementById('inp-btn').onclick=()=>{inputChecked=false;inputIdx++;renderInput()};
@@ -475,15 +438,13 @@ function checkInput(){
 
 // ── SPRINT MODE ──
 let sprintTimer=null,sprintTime=30,sprintWords=[],sprintIdx=0,sprintCorrect=0,sprintTotal=0,sprintLog=[];
-
 function startSprint(){
   document.getElementById('header-title').textContent='Спринт';
-  const all=load();
+  const all=loadLocal();
   if(all.length<2){showNoWords('Нужно минимум 2 слова');return}
   sprintWords=all.sort(()=>Math.random()-.5);
   sprintIdx=0;sprintCorrect=0;sprintTotal=0;sprintTime=30;sprintLog=[];
-  clearInterval(sprintTimer);
-  renderSprint();
+  clearInterval(sprintTimer);renderSprint();
   sprintTimer=setInterval(()=>{
     sprintTime--;
     const el=document.getElementById('sprint-time');
@@ -491,20 +452,13 @@ function startSprint(){
     if(sprintTime<=0){clearInterval(sprintTimer);sprintEnd()}
   },1000);
 }
-
+let sprintPairData=null;
 function sprintPair(){
   const w=sprintWords[sprintIdx%sprintWords.length];
   const showCorrect=Math.random()>.5;
-  let shown;
-  if(showCorrect){shown=w.ru}
-  else{
-    const others=sprintWords.filter(x=>x.id!==w.id);
-    shown=others[Math.floor(Math.random()*others.length)]?.ru||w.ru;
-  }
+  const shown=showCorrect?w.ru:sprintWords.filter(x=>x.id!==w.id)[Math.floor(Math.random()*sprintWords.length)]?.ru||w.ru;
   return{w,shown,correct:showCorrect}
 }
-
-let sprintPairData=null;
 function renderSprint(){
   sprintPairData=sprintPair();
   const{w,shown}=sprintPairData;
@@ -512,16 +466,12 @@ function renderSprint(){
     <button class="back-btn" onclick="clearInterval(sprintTimer);closeMode()">← Назад</button>
     <div class="sprint-timer${sprintTime<=10?' warning':''}" id="sprint-time">${sprintTime}</div>
     <div class="sprint-score">✓ ${sprintCorrect} из ${sprintTotal}</div>
-    <div class="sprint-card">
-      <div class="sprint-en">${w.en}</div>
-      <div class="sprint-ru">${shown}</div>
-    </div>
+    <div class="sprint-card"><div class="sprint-en">${w.en}</div><div class="sprint-ru">${shown}</div></div>
     <div class="sprint-btns">
       <button class="sprint-btn sprint-no" onclick="sprintAnswer(false)">✗ Неверно</button>
       <button class="sprint-btn sprint-yes" onclick="sprintAnswer(true)">✓ Верно</button>
     </div>`;
 }
-
 function sprintAnswer(userSaysCorrect){
   if(!sprintPairData)return;
   sprintTotal++;
@@ -531,7 +481,6 @@ function sprintAnswer(userSaysCorrect){
   sprintIdx++;
   if(sprintTime>0)renderSprint();
 }
-
 function sprintEnd(){
   const pct=sprintTotal?Math.round(sprintCorrect/sprintTotal*100):0;
   const icon=sprintCorrect===sprintTotal&&sprintTotal>0?'🏆':sprintCorrect>sprintTotal/2?'⚡':'📖';
@@ -551,31 +500,21 @@ function sprintEnd(){
       <div style="font-size:22px;font-weight:700;margin-bottom:4px">Время вышло!</div>
       <div style="font-size:15px;color:var(--text2);margin-bottom:4px">Правильно: <b>${sprintCorrect}</b> из ${sprintTotal}</div>
       <div style="font-size:15px;color:var(--text2);margin-bottom:16px">Точность: <b>${pct}%</b></div>
-      <div class="btn-row" style="margin-bottom:20px">
-        <button class="btn-primary" onclick="startSprint()">Ещё раз</button>
-        <button class="btn-secondary" onclick="closeMode()">Меню</button>
-      </div>
+      <div class="btn-row" style="margin-bottom:20px"><button class="btn-primary" onclick="startSprint()">Ещё раз</button><button class="btn-secondary" onclick="closeMode()">Меню</button></div>
     </div>
-    ${sprintLog.length?`
-      <div style="font-size:13px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">Разбор ответов</div>
-      <div style="background:var(--surface);border:0.5px solid var(--border);border-radius:12px;overflow:hidden">${rows}</div>`:''}`;
+    ${sprintLog.length?`<div style="font-size:13px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">Разбор ответов</div><div style="background:var(--surface);border:0.5px solid var(--border);border-radius:12px;overflow:hidden">${rows}</div>`:''}`;
 }
 
 // ── AUDIO MODE ──
 let audioWords=[],audioIdx=0,audioRevealed=false;
-
 function startAudio(){
   document.getElementById('header-title').textContent='Аудио';
   if(!window.speechSynthesis){showNoWords('Браузер не поддерживает синтез речи');return}
-  const all=load();
+  const all=loadLocal();
   if(!all.length){showNoWords();return}
-  audioWords=getDue(all).length?getDue(all):all;
-  audioWords=audioWords.sort(()=>Math.random()-.5).slice(0,20);
-  audioIdx=0;audioRevealed=false;
-  renderAudio();
-  speakCurrent();
+  audioWords=(getDue(all).length?getDue(all):all).sort(()=>Math.random()-.5).slice(0,20);
+  audioIdx=0;audioRevealed=false;renderAudio();speakCurrent();
 }
-
 function speak(text){
   window.speechSynthesis.cancel();
   const u=new SpeechSynthesisUtterance(text);
@@ -584,32 +523,21 @@ function speak(text){
   if(voices.length)u.voice=voices[0];
   window.speechSynthesis.speak(u);
 }
-
-function speakCurrent(){
-  if(audioWords[audioIdx])speak(audioWords[audioIdx].en);
-}
-
+function speakCurrent(){if(audioWords[audioIdx])speak(audioWords[audioIdx].en)}
 function renderAudio(){
   const el=document.getElementById('screen-mode');
   if(audioIdx>=audioWords.length){
-    el.innerHTML=`<button class="back-btn" onclick="closeMode()">← Назад</button>
-      <div class="done-box"><div class="done-icon">🎉</div><h2>Готово!</h2><p>Все слова прослушаны.</p>
-      <div class="btn-row"><button class="btn-primary" onclick="startAudio()">Ещё раз</button><button class="btn-secondary" onclick="closeMode()">Меню</button></div></div>`;
+    el.innerHTML=`<button class="back-btn" onclick="closeMode()">← Назад</button><div class="done-box"><div class="done-icon">🎉</div><h2>Готово!</h2><p>Все слова прослушаны.</p><div class="btn-row"><button class="btn-primary" onclick="startAudio()">Ещё раз</button><button class="btn-secondary" onclick="closeMode()">Меню</button></div></div>`;
     return;
   }
   const w=audioWords[audioIdx];
   el.innerHTML=`
     <button class="back-btn" onclick="window.speechSynthesis.cancel();closeMode()">← Назад</button>
-    <div class="mode-progress">
-      <div class="mode-progress-bar"><div class="mode-progress-fill" style="width:${Math.round(audioIdx/audioWords.length*100)}%"></div></div>
-      <span class="mode-progress-text">${audioIdx+1}/${audioWords.length}</span>
-    </div>
+    <div class="mode-progress"><div class="mode-progress-bar"><div class="mode-progress-fill" style="width:${Math.round(audioIdx/audioWords.length*100)}%"></div></div><span class="mode-progress-text">${audioIdx+1}/${audioWords.length}</span></div>
     <div style="text-align:center;margin:20px 0 8px;font-size:13px;color:var(--muted)">Прослушай слово и вспомни перевод</div>
-    <button class="speak-btn" onclick="speakCurrent()" aria-label="Произнести слово снова">🔊</button>
+    <button class="speak-btn" onclick="speakCurrent()">🔊</button>
     ${audioRevealed?`
-      <div class="audio-word">${w.en}</div>
-      <div class="audio-word" style="color:var(--accent)">${w.ru}</div>
-      ${w.ctx?`<div class="card-context" style="margin:8px 0 20px">"${w.ctx}"</div>`:'<div style="margin-bottom:20px"></div>'}
+      <div style="text-align:center"><div class="card-word" style="margin-bottom:6px">${w.en}</div><div class="card-translation">${w.ru}</div>${w.ctx?`<div class="card-context" style="margin:10px 0 20px">"${w.ctx}"</div>`:'<div style="margin-bottom:20px"></div>'}</div>
       <div class="grade-label">Знали слово?</div>
       <div class="grade-row">
         <button class="grade-btn g1" onclick="audioNext(1)">1<span>Не помню</span></button>
@@ -618,48 +546,35 @@ function renderAudio(){
         <button class="grade-btn g4" onclick="audioNext(4)">4<span>Легко</span></button>
       </div>`:`<button class="show-btn" onclick="audioReveal()">Показать перевод</button>`}`;
 }
-
 function audioReveal(){audioRevealed=true;renderAudio()}
-function audioNext(g){
-  const words=load(),idx=words.findIndex(w=>w.id===audioWords[audioIdx].id);
-  if(idx!==-1)words[idx]=sm2(words[idx],g);
-  save(words);recordReview();
-  audioIdx++;audioRevealed=false;
-  renderAudio();
+async function audioNext(g){
+  const words=loadLocal(),idx=words.findIndex(w=>w.id===audioWords[audioIdx].id);
+  if(idx!==-1){words[idx]=sm2(words[idx],g);saveLocal(words);upsertWord(words[idx]);}
+  recordReview();audioIdx++;audioRevealed=false;renderAudio();
   if(audioIdx<audioWords.length)setTimeout(speakCurrent,300);
 }
 
 // ── NO WORDS ──
 function showNoWords(msg='Нет слов для повторения'){
-  document.getElementById('screen-mode').innerHTML=`
-    <button class="back-btn" onclick="closeMode()">← Назад</button>
-    <div class="done-box"><div class="done-icon">📚</div><h2>${msg}</h2>
-    <p>Добавь слова во вкладке «Слова»</p>
-    <button class="btn-primary" onclick="closeMode();showTab('add')">Добавить слова</button></div>`;
+  document.getElementById('screen-mode').innerHTML=`<button class="back-btn" onclick="closeMode()">← Назад</button><div class="done-box"><div class="done-icon">📚</div><h2>${msg}</h2><p>Добавь слова во вкладке «Слова»</p><button class="btn-primary" onclick="closeMode();showTab('add')">Добавить слова</button></div>`;
 }
 
 // ── ADD SCREEN ──
 function renderAdd(){
-  const words=load();
+  const words=loadLocal();
   document.getElementById('screen-add').innerHTML=`
     <div class="section-title">Добавить вручную</div>
     <div class="form-card">
-      <div class="input-group">
-        <input type="text" id="in-en" placeholder="English word" />
-        <input type="text" id="in-ru" placeholder="Перевод" />
-      </div>
+      <div class="input-group"><input type="text" id="in-en" placeholder="English word" /><input type="text" id="in-ru" placeholder="Перевод" /></div>
       <input type="text" id="in-ctx" placeholder="Пример предложения (необязательно)" class="input-full" />
       <button class="btn-primary" onclick="addWord()" style="width:100%">Добавить слово</button>
     </div>
     <div class="section-title">Загрузить из файла</div>
-    <div class="file-drop" onclick="document.getElementById('fi').click()">
-      📂 Нажмите для выбора TXT файла
-      <div class="file-hint">Формат: одно слово на строку<br><code>apple - яблоко</code> или <code>apple, яблоко</code></div>
-    </div>
+    <div class="file-drop" onclick="document.getElementById('fi').click()">📂 Нажмите для выбора TXT файла<div class="file-hint">Формат: одно слово на строку<br><code>apple - яблоко</code> или <code>apple, яблоко</code></div></div>
     <input type="file" id="fi" accept=".txt" style="display:none" onchange="loadFile(this)" />
     <div class="export-row">
       <button class="btn-secondary" onclick="exportWords()">Экспорт TXT</button>
-      <button class="btn-secondary" onclick="if(confirm('Удалить все слова?')){save([]);buildFlipQueue();flipCurrent=null;renderAdd();toast('Все слова удалены')}">Очистить всё</button>
+      <button class="btn-secondary" onclick="if(confirm('Удалить все слова?'))clearAll()">Очистить всё</button>
     </div>
     ${words.length?`
       <div class="section-title" style="margin-top:20px">Все слова (${words.length})</div>
@@ -671,32 +586,42 @@ function renderAdd(){
       }).join('')}</div>`:'<div class="empty">Нет слов. Добавьте первое!</div>'}`;
 }
 
-function addWord(){
+async function addWord(){
   const en=document.getElementById('in-en').value.trim();
   const ru=document.getElementById('in-ru').value.trim();
   const ctx=document.getElementById('in-ctx').value.trim();
   if(!en||!ru){toast('Введите слово и перевод');return}
-  const words=load();
+  const words=loadLocal();
   if(words.find(w=>w.en.toLowerCase()===en.toLowerCase())){toast('Такое слово уже есть');return}
-  words.push({id:uid(),en,ru,ctx,interval:1,reps:0,ef:2.5,due:0});
-  save(words);buildFlipQueue();toast('Слово добавлено');renderAdd();
+  const w={id:uid(),en,ru,ctx,interval:1,reps:0,ef:2.5,due:0};
+  words.push(w);saveLocal(words);buildFlipQueue();
+  toast('Слово добавлено');renderAdd();
+  await upsertWord(w);
 }
 
-function delWord(id){
-  save(load().filter(w=>w.id!==id));
+async function delWord(id){
+  saveLocal(loadLocal().filter(w=>w.id!==id));
   flipQueue=flipQueue.filter(w=>w.id!==id);
   if(flipCurrent&&flipCurrent.id===id)flipCurrent=null;
   renderAdd();
+  await deleteWord(id);
 }
 
-function loadFile(input){
+async function clearAll(){
+  const words=loadLocal();
+  saveLocal([]);buildFlipQueue();flipCurrent=null;
+  renderAdd();toast('Все слова удалены');
+  for(const w of words)await deleteWord(w.id);
+}
+
+async function loadFile(input){
   const file=input.files[0];if(!file)return;
   const reader=new FileReader();
-  reader.onload=e=>{
+  reader.onload=async e=>{
     const lines=e.target.result.split(/\r?\n/).filter(l=>l.trim());
-    const words=load();
+    const words=loadLocal();
     const existing=new Set(words.map(w=>w.en.toLowerCase()));
-    let added=0,skipped=0;
+    let added=0,skipped=0,newWords=[];
     lines.forEach(line=>{
       let en,ru;
       if(line.includes(' - '))[en,ru]=line.split(' - ',2);
@@ -705,18 +630,19 @@ function loadFile(input){
       en=(en||'').trim();ru=(ru||'').trim();
       if(!en||!ru)return;
       if(existing.has(en.toLowerCase())){skipped++;return}
-      words.push({id:uid(),en,ru,ctx:'',interval:1,reps:0,ef:2.5,due:0});
-      existing.add(en.toLowerCase());added++;
+      const w={id:uid(),en,ru,ctx:'',interval:1,reps:0,ef:2.5,due:0};
+      words.push(w);newWords.push(w);existing.add(en.toLowerCase());added++;
     });
-    save(words);buildFlipQueue();
-    toast(`Добавлено ${added} слов${skipped?', пропущено дублей: '+skipped:''}`);
+    saveLocal(words);buildFlipQueue();
+    toast(`Добавлено ${added} слов${skipped?', пропущено: '+skipped:''}`);
     renderAdd();input.value='';
+    await upsertMany(newWords);
   };
   reader.readAsText(file,'UTF-8');
 }
 
 function exportWords(){
-  const words=load();
+  const words=loadLocal();
   if(!words.length){toast('Нет слов для экспорта');return}
   const a=document.createElement('a');
   a.href='data:text/plain;charset=utf-8,'+encodeURIComponent(words.map(w=>`${w.en} - ${w.ru}`).join('\n'));
@@ -725,15 +651,12 @@ function exportWords(){
 
 // ── STATS ──
 function renderStats(){
-  const words=load(),st=loadSt();
+  const words=loadLocal(),st=loadStats();
   const days=st.days||[];
   let streak=0;const today=new Date().toDateString();
-  for(let i=days.length-1;i>=0;i--){
-    const diff=Math.round((new Date(today)-new Date(days[i]))/86400000);
-    if(diff===streak)streak++;else break;
-  }
+  for(let i=days.length-1;i>=0;i--){const diff=Math.round((new Date(today)-new Date(days[i]))/86400000);if(diff===streak)streak++;else break}
   const groups=[
-    {l:'Новые (не учились)',n:words.filter(w=>!w.reps).length},
+    {l:'Новые',n:words.filter(w=>!w.reps).length},
     {l:'1–3 дня',n:words.filter(w=>w.reps&&w.interval<=3).length},
     {l:'4–7 дней',n:words.filter(w=>w.reps&&w.interval>=4&&w.interval<=7).length},
     {l:'Больше недели',n:words.filter(w=>w.reps&&w.interval>7).length},
@@ -746,15 +669,12 @@ function renderStats(){
       <div class="stat"><div class="stat-n">${streak}</div><div class="stat-l">дней подряд</div></div>
     </div>
     <div class="section-title">По интервалам</div>
-    <div class="form-card">${groups.map(g=>`
-      <div class="bar-row">
-        <div class="bar-label"><span style="color:var(--text2)">${g.l}</span><span>${g.n}</span></div>
-        <div class="bar-track"><div class="bar-fill" style="width:${Math.round(g.n/maxN*100)}%"></div></div>
-      </div>`).join('')}</div>
+    <div class="form-card">${groups.map(g=>`<div class="bar-row"><div class="bar-label"><span style="color:var(--text2)">${g.l}</span><span>${g.n}</span></div><div class="bar-track"><div class="bar-fill" style="width:${Math.round(g.n/maxN*100)}%"></div></div></div>`).join('')}</div>
     <div class="section-title">Последние дни</div>
     <div class="form-card" style="font-size:13px;color:var(--text2);line-height:1.9">
       ${days.length?days.slice(-7).reverse().map(d=>`<div>${new Date(d).toLocaleDateString('ru',{weekday:'short',day:'numeric',month:'short'})}</div>`).join(''):'<div style="color:var(--muted)">Ещё нет занятий</div>'}
-    </div>`;
+    </div>
+    <button class="btn-secondary" style="width:100%;margin-top:12px" onclick="syncFromCloud().then(()=>{renderStudy();renderStats();renderAdd()})">🔄 Синхронизировать</button>`;
 }
 
 // ── TOAST ──
@@ -768,8 +688,17 @@ function toast(msg){
 
 if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
 window.speechSynthesis?.getVoices();
-buildFlipQueue();
-renderStudy();
+
+// init
+syncFromCloud().then(ok=>{
+  if(ok){renderStudy();renderAdd();}
+  else{
+    // fallback to local
+    setSyncStatus('err','работает офлайн');
+    renderStudy();renderAdd();
+  }
+  buildFlipQueue();
+});
 </script>
 </body>
 </html>
