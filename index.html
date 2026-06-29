@@ -191,7 +191,7 @@ input[type=text]::placeholder{color:var(--muted)}
 <div class="toast" id="toast"></div>
 
 <script>
-const SK='fc_words_v2', STK='fc_stats_v2';
+const SK='fc_words_v1', STK='fc_stats_v1';
 function load(){try{return JSON.parse(localStorage.getItem(SK)||'[]')}catch(e){return[]}}
 function save(d){localStorage.setItem(SK,JSON.stringify(d))}
 function loadSt(){try{return JSON.parse(localStorage.getItem(STK)||'{"reviews":0,"days":[]}')}catch(e){return{reviews:0,days:[]}}}
