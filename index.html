@@ -474,14 +474,14 @@ function checkInput(){
 }
 
 // ── SPRINT MODE ──
-let sprintTimer=null,sprintTime=30,sprintWords=[],sprintIdx=0,sprintCorrect=0,sprintTotal=0;
+let sprintTimer=null,sprintTime=30,sprintWords=[],sprintIdx=0,sprintCorrect=0,sprintTotal=0,sprintLog=[];
 
 function startSprint(){
   document.getElementById('header-title').textContent='Спринт';
   const all=load();
   if(all.length<2){showNoWords('Нужно минимум 2 слова');return}
   sprintWords=all.sort(()=>Math.random()-.5);
-  sprintIdx=0;sprintCorrect=0;sprintTotal=0;sprintTime=30;
+  sprintIdx=0;sprintCorrect=0;sprintTotal=0;sprintTime=30;sprintLog=[];
   clearInterval(sprintTimer);
   renderSprint();
   sprintTimer=setInterval(()=>{
@@ -525,20 +525,40 @@ function renderSprint(){
 function sprintAnswer(userSaysCorrect){
   if(!sprintPairData)return;
   sprintTotal++;
-  if(userSaysCorrect===sprintPairData.correct)sprintCorrect++;
+  const ok=userSaysCorrect===sprintPairData.correct;
+  if(ok)sprintCorrect++;
+  sprintLog.push({en:sprintPairData.w.en,ru:sprintPairData.w.ru,shown:sprintPairData.shown,correct:sprintPairData.correct,ok});
   sprintIdx++;
   if(sprintTime>0)renderSprint();
 }
 
 function sprintEnd(){
+  const pct=sprintTotal?Math.round(sprintCorrect/sprintTotal*100):0;
+  const icon=sprintCorrect===sprintTotal&&sprintTotal>0?'🏆':sprintCorrect>sprintTotal/2?'⚡':'📖';
+  const rows=sprintLog.map(r=>`
+    <div style="display:flex;align-items:center;padding:10px 14px;border-bottom:0.5px solid var(--border);gap:10px">
+      <span style="font-size:16px">${r.ok?'✅':'❌'}</span>
+      <div style="flex:1;min-width:0">
+        <div style="font-size:14px;font-weight:500">${r.en}</div>
+        <div style="font-size:13px;color:var(--text2)">${r.ru}</div>
+        ${!r.ok?`<div style="font-size:12px;color:var(--muted);margin-top:2px">Показано: «${r.shown}» — ${r.correct?'верный перевод':'неверный перевод'}</div>`:''}
+      </div>
+    </div>`).join('');
   document.getElementById('screen-mode').innerHTML=`
     <button class="back-btn" onclick="closeMode()">← Назад</button>
-    <div class="done-box">
-      <div class="done-icon">${sprintCorrect===sprintTotal&&sprintTotal>0?'🏆':sprintCorrect>sprintTotal/2?'⚡':'📖'}</div>
-      <h2>Время вышло!</h2>
-      <p>Правильно: ${sprintCorrect} из ${sprintTotal}<br>Точность: ${sprintTotal?Math.round(sprintCorrect/sprintTotal*100):0}%</p>
-      <div class="btn-row"><button class="btn-primary" onclick="startSprint()">Ещё раз</button><button class="btn-secondary" onclick="closeMode()">Меню</button></div>
-    </div>`;
+    <div style="text-align:center;padding:20px 16px 16px">
+      <div style="font-size:36px;margin-bottom:8px">${icon}</div>
+      <div style="font-size:22px;font-weight:700;margin-bottom:4px">Время вышло!</div>
+      <div style="font-size:15px;color:var(--text2);margin-bottom:4px">Правильно: <b>${sprintCorrect}</b> из ${sprintTotal}</div>
+      <div style="font-size:15px;color:var(--text2);margin-bottom:16px">Точность: <b>${pct}%</b></div>
+      <div class="btn-row" style="margin-bottom:20px">
+        <button class="btn-primary" onclick="startSprint()">Ещё раз</button>
+        <button class="btn-secondary" onclick="closeMode()">Меню</button>
+      </div>
+    </div>
+    ${sprintLog.length?`
+      <div style="font-size:13px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">Разбор ответов</div>
+      <div style="background:var(--surface);border:0.5px solid var(--border);border-radius:12px;overflow:hidden">${rows}</div>`:''}`;
 }
 
 // ── AUDIO MODE ──
